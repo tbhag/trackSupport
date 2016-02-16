@@ -18,12 +18,12 @@ var trackSupport = (function() {
 	me.init = function(settings) {
 		var limit = settings.limit;
 		var tests = settings.tests;
-		var userID = settings.userID;
+		var customID = settings.customUserID;
 		if (!localStorage.getItem('trackSupport')) {
 			me.data = {
 				browser: getBrowser(),
 				runningTests: [],
-				userID: (userID || generateUserID()),
+				userID: (customID || generateUserID()),
 				time: getTime()
 			};
 		} else {
