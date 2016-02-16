@@ -5,7 +5,7 @@ A simple way to map customer service issues to running ab tests
 Track support stores ab test assignments and test pages in localStorage with an id. Once a user contacts customer support, this id can be used to track which tests. You may send the data as you wish. (I recommend sending right when a customer support link is activated). This way, customer service issues can be mapped to running ab tests.
 
 ##Usage
-Include after file
+Include after trackSupport.js
 ```javascript
 trackSupport.init({
 	limit: 20, // number of local storage entries
