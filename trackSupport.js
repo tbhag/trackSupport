@@ -16,20 +16,21 @@ var trackSupport = (function() {
 	};
 	
 	me.init = function(settings) {
-		var	limit = settings.limit;
+		var limit = settings.limit;
 		var tests = settings.tests;
+		var userID = settings.userID;
 		if (!localStorage.getItem('trackSupport')) {
 			me.data = {
 				browser: getBrowser(),
 				runningTests: [],
-				userID: generateUserID(),
+				userID: (userID || generateUserID()),
 				time: getTime()
 			};
 		} else {
 			me.data = JSON.parse(localStorage.getItem('trackSupport'));	
 		}
 		tests.forEach(function(item, index, array) {
-			generateTestData(item.name, item.activeTest, item.activeCell, limit);
+			generateTestData(item.name, item.activeTests, item.activeCells, limit);
 		});
 		localStorage.setItem('trackSupport', JSON.stringify(me.data));
 	};
@@ -37,11 +38,11 @@ var trackSupport = (function() {
 	return me;
 
 
-	function generateTestData(name, activeTest, activeCell, limit) {
+	function generateTestData(name, activeTests, activeCells, limit) {
 		var location = window.location;
 		var data = {
-			activeTest: activeTest,
-			activeCell: activeCell,
+			activeTests: activeTests,
+			activeCells: activeCells,
 			page: location.hostname + location.pathname + location.search,
 			time: getTime()
 		};
